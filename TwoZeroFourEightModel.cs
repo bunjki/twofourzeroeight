@@ -11,6 +11,7 @@ namespace twozerofoureight
         protected int boardSize; // default is 4
         protected int[,] board;
         protected Random rand;
+        public int Score = 0; // นับแต้ม
 
         public TwoZeroFourEightModel() : this(4)
         {
@@ -22,6 +23,10 @@ namespace twozerofoureight
             return board;
         }
 
+        public int GetScore() //รับค่า
+        {
+            return Score;
+        }
         public TwoZeroFourEightModel(int size)
         {
             boardSize = size;
@@ -83,6 +88,8 @@ namespace twozerofoureight
                     {
                         buffer[j - 1] *= 2;
                         buffer[j] = 0;
+
+                        Score += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
                     }
                 }
                 // shift left again
@@ -135,6 +142,8 @@ namespace twozerofoureight
                     {
                         buffer[j - 1] *= 2;
                         buffer[j] = 0;
+
+                        Score += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
                     }
                 }
                 // shift left again
@@ -189,6 +198,8 @@ namespace twozerofoureight
                     {
                         buffer[j - 1] *= 2;
                         buffer[j] = 0;
+
+                        Score += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
                     }
                 }
                 // shift left again
@@ -240,6 +251,8 @@ namespace twozerofoureight
                     {
                         buffer[j - 1] *= 2;
                         buffer[j] = 0;
+
+                        Score += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
                     }
                 }
                 // shift left again
