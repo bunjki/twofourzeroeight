@@ -12,6 +12,7 @@ namespace twozerofoureight
         protected int[,] board;
         protected Random rand;
         public int Score = 0; // นับแต้ม
+        protected int GameOver = 0;
 
         public TwoZeroFourEightModel() : this(4)
         {

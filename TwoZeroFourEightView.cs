@@ -23,13 +23,14 @@ namespace twozerofoureight
             controller = new TwoZeroFourEightController();
             controller.AddModel(model);
             controller.ActionPerformed(TwoZeroFourEightController.LEFT);
-            textBox1.Text = "0";  // โชว์ 0 ใน textBox
+            
         }
 
         public void Notify(Model m)
         {
             UpdateBoard(((TwoZeroFourEightModel) m).GetBoard());
             UpdateScore(((TwoZeroFourEightModel) m).GetScore()); //แสดงแต้มที่ชนแล้ว+กัน
+            UpdateGameOver(((TwoZeroFourEightModel)m).GetBoard()); //แสดงเมื่อ GameOver
         }
 
         private void UpdateTile(Label l, int i)
@@ -81,7 +82,51 @@ namespace twozerofoureight
 
         private void UpdateScore(int Score) //โชว์ค่าใน Text
         {
-            textBox1.Text = Convert.ToString(Score);
+            UpdateTile(Score, result);
+        }
+
+
+        private void UpdateGameOver(int[,] Board)
+        {
+            bool a = true, b = true;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (Board[i, j] == 0)
+                    {
+                        a = true;
+                        break;
+                    }
+                    else a = false;
+                }
+                if (a)
+                {
+                    label2.Text = " ";
+                    break;
+                }
+                else if (i == 3)
+                {
+                    for (int k = 0; k < 3; k++)
+                    {
+                        for (int q = 0; q < 3; q++)
+                        {
+                            if (Board[k, q] == Board[k, q + 1] || Board[k, q] == Board[k + 1, q])
+                            {
+                                b = true;
+                                break;
+                            }
+                            else b = false;
+                        }
+                        if (Board[k, 3] == Board[k + 1, 3]) b = true;
+                        if (b) break;
+                    }
+                    if (b) label2.Text = "Full";
+                    else label2.Text = "GameOver";
+                }
+            }
+
+
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -104,9 +149,14 @@ namespace twozerofoureight
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void Point_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
