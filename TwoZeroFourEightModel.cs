@@ -299,7 +299,7 @@ namespace twozerofoureight
                 }
             }
             board = Random(board);
-            NotifyAll();
+            NotifyAll(); /////
         }
     }
 }
