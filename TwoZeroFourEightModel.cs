@@ -11,8 +11,9 @@ namespace twozerofoureight
         protected int boardSize; // default is 4
         protected int[,] board;
         protected Random rand;
-        public int Score = 0; // นับแต้ม
-        protected int GameOver = 0;
+        public int Point = 0; // นับแต้ม
+
+        protected int[] haha = new int[4];
 
         public TwoZeroFourEightModel() : this(4)
         {
@@ -26,8 +27,14 @@ namespace twozerofoureight
 
         public int GetScore() //รับค่า
         {
-            return Score;
+            return Point;
         }
+
+        public int[] Fourtid()
+        {
+            return haha;
+        }
+
         public TwoZeroFourEightModel(int size)
         {
             boardSize = size;
@@ -65,6 +72,8 @@ namespace twozerofoureight
             int[] rangeX = Enumerable.Range(0, boardSize).ToArray();
             int[] rangeY = Enumerable.Range(0, boardSize).ToArray();
             Array.Reverse(rangeY);
+
+            haha[0] = 3;
             foreach (int i in rangeX)
             {
                 pos = 0;
@@ -90,7 +99,9 @@ namespace twozerofoureight
                         buffer[j - 1] *= 2;
                         buffer[j] = 0;
 
-                        Score += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
+                        haha[0] = 1;
+
+                        Point += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
                     }
                 }
                 // shift left again
@@ -118,11 +129,13 @@ namespace twozerofoureight
             int[] buffer;
             int pos;
 
+            haha[1] = 3;
+
             int[] range = Enumerable.Range(0, boardSize).ToArray();
             foreach (int i in range)
             {
                 pos = 0;
-                buffer = new int[4];
+                buffer = new int[boardSize]; // Fix BoardSize
                 foreach (int k in range)
                 {
                     buffer[k] = 0;
@@ -142,9 +155,12 @@ namespace twozerofoureight
                     if (j > 0 && buffer[j] != 0 && buffer[j] == buffer[j - 1])
                     {
                         buffer[j - 1] *= 2;
+
+                        haha[1] = 1;
+
                         buffer[j] = 0;
 
-                        Score += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
+                        Point += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
                     }
                 }
                 // shift left again
@@ -172,6 +188,8 @@ namespace twozerofoureight
             int[] buffer;
             int pos;
 
+            haha[2] = 3;
+
             int[] rangeX = Enumerable.Range(0, boardSize).ToArray();
             int[] rangeY = Enumerable.Range(0, boardSize).ToArray();
             Array.Reverse(rangeX);
@@ -198,9 +216,12 @@ namespace twozerofoureight
                     if (j > 0 && buffer[j] != 0 && buffer[j] == buffer[j - 1])
                     {
                         buffer[j - 1] *= 2;
+
+                        haha[2] = 1;
+
                         buffer[j] = 0;
 
-                        Score += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
+                        Point += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
                     }
                 }
                 // shift left again
@@ -227,6 +248,9 @@ namespace twozerofoureight
         {
             int[] buffer;
             int pos;
+
+            haha[3] = 3;
+
             int[] range = Enumerable.Range(0, boardSize).ToArray();
             foreach (int i in range)
             {
@@ -251,9 +275,12 @@ namespace twozerofoureight
                     if (j > 0 && buffer[j] != 0 && buffer[j] == buffer[j - 1])
                     {
                         buffer[j - 1] *= 2;
+
+                        haha[3] = 1;
+
                         buffer[j] = 0;
 
-                        Score += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
+                        Point += buffer[j - 1]; //ตัวที่ชนแล้ว + กัน
                     }
                 }
                 // shift left again
