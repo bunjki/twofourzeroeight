@@ -180,7 +180,7 @@ namespace twozerofoureight
                 case Keys.Down:
                     controller.ActionPerformed(TwoZeroFourEightController.DOWN);
                     return true;
-                // ...
+                // กด คีย์ขึ้นลงเล่นได้
                 default:
                     return base.ProcessCmdKey(ref msg, keyData);
             }

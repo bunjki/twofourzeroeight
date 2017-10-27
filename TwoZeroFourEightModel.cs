@@ -52,6 +52,7 @@ namespace twozerofoureight
 
         private int[,] Random(int[,] input)
         {
+            int count = 0;
             while (true)
             {
                 int x = rand.Next(boardSize);
@@ -61,6 +62,8 @@ namespace twozerofoureight
                     board[x, y] = 2;
                     break;
                 }
+                count++;
+                if (count > 15) break; //Fix bug error when table is Full
             }
             return input;
         }
